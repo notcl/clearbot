@@ -3,7 +3,7 @@ const express = require('express');
 const path = require('path');
 const { Client, IntentsBitField } = require('discord.js');
 const mongoose = require('mongoose');
-const eventHandler = require('../bot/src/handlers/eventHandler');
+const eventHandler = require('./bot/src/handlers/eventHandler');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -33,26 +33,26 @@ const client = new Client({
 })();
 
 // Serve static files from the "public" directory
-app.use(express.static(path.join(__dirname, '..', 'public')));
+app.use(express.static(path.join(__dirname, 'public')));
 
 // Route for the homepage
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, '..', 'public', 'index.html'));
+  res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
 // Route for the terms of service page
 app.get('/terms', (req, res) => {
-  res.sendFile(path.join(__dirname, '..', 'public', 'tos.html'));
+  res.sendFile(path.join(__dirname, 'public', 'tos.html'));
 });
 
 // Route for the privacy policy PDF
 app.get('/assets/privacy.pdf', (req, res) => {
-  res.sendFile(path.join(__dirname, '..', 'public', 'assets', 'privacy.pdf'));
+  res.sendFile(path.join(__dirname, 'public', 'assets', 'privacy.pdf'));
 });
 
 // Route for the coming soon page
 app.get('/coming', (req, res) => {
-  res.sendFile(path.join(__dirname, '..', 'public', 'comingsoon.html'));
+  res.sendFile(path.join(__dirname, 'public', 'comingsoon.html'));
 });
 
 // Route for inviting the bot
@@ -67,7 +67,7 @@ app.get('/discord', (req, res) => {
 
 // 404 Route (Page Not Found)
 app.use((req, res, next) => {
-  res.status(404).sendFile(path.join(__dirname, '..', 'public', '404.html'));
+  res.status(404).sendFile(path.join(__dirname, 'public', '404.html'));
 });
 
 // Start the server
